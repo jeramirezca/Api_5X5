@@ -1,9 +1,7 @@
 {
-  "name": "Softplace",
+  "name": "api-producto",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/Mision-TIC-Ciclo-3/api-concesionario.git",
-  "author": "Grupo_5X5",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -11,6 +9,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongodb": "^4.1.3"
   },
