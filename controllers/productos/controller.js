@@ -51,7 +51,7 @@ const crearProducto = async (datosProducto, callback)=>{
 
               if(resultado){
 
-                return { error: 'Error en consulta de datos', result: "Hola" };
+                return callback(409)
                   //Por implementar
             }
               else{

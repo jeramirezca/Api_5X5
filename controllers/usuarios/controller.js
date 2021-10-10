@@ -46,7 +46,7 @@ const crearUsuario = async (datosUsuario, callback)=>{
 
           if(resultado){
 
-              //No se como se desarrolla      
+            return callback(409)
             
           }else{
 
