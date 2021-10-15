@@ -33,39 +33,42 @@ const crearVenta = async (datosVenta, callback)=>{
   console.log('Llaves: ', Object.keys(datosVenta));
 
       if (
-          Object.keys(datosVenta).includes('usuario') &&
-          Object.keys(datosVenta).includes('rol') &&
+          Object.keys(datosVenta).includes('codigoVenta') &&
+          Object.keys(datosVenta).includes('cliente') &&
+          Object.keys(datosVenta).includes('idCliente') &&
+          Object.keys(datosVenta).includes('totalVenta') &&
+          Object.keys(datosVenta).includes('fechaVenta')&&
+          Object.keys(datosVenta).includes('vendedor')&&
           Object.keys(datosVenta).includes('estado')
         ) {
-          // implementar código para crear vehículo en la BD
+          // implementar código para crear venta en la BD
           const connection = getDB();
-          console.log(datosVenta.usuario);
-          const ss =  { usuario: datosVenta.usuario};
+          console.log(datosVenta.codigoVenta);
+          const ss =  { codigoVenta: datosVenta.codigoVenta};
           console.log(ss);
 
           const resultado = await connection.collection('ventas').findOne(ss);
 
           if(resultado){
 
-              //No se como se desarrolla      
+            return callback(409)    
             
           }else{
 
-            await connection.collection('ventas').insertOne(datosUsuario, callback);
+            await connection.collection('ventas').insertOne(datosVenta, callback);
 
           }         
           
         } else {
-          return { err: 'Error en consulta de datos', result: "Hola" };
+          return { err: 'Error en consulta de datos' };
         }
 };
 
 
 //editar una venta
 
-const editarVenta =async (id,edicion, callback)=>{
+const editarVenta =async (id, edicion, callback)=>{
 
-  
   const filtroVenta = { _id: new ObjectId(id) };
   console.log("aqui,",id);
   console.log(filtroVenta);
@@ -78,20 +81,14 @@ const editarVenta =async (id,edicion, callback)=>{
 
 };
 
-
-
-
-//elminar una venta
+//eliminar una venta
 
 const eliminarVenta = async (id, callback)=>{
-
     const filtroVenta = { _id: new ObjectId(id) };
-    
     const connection = getDB();
     await connection.collection('ventas').deleteOne(filtroVenta, callback);
 
 };
-
 
 
 export {consultaTodosVentas, crearVenta, editarVenta, eliminarVenta, consultarVenta };
